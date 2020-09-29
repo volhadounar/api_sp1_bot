@@ -48,7 +48,6 @@ def main():
         try:
             new_homework = get_homework_statuses(current_timestamp)
             if new_homework.get('homeworks'):
-                print('la la la')
                 send_message(parse_homework_status(
                              new_homework.get('homeworks')[0]))
             current_timestamp = new_homework.get('current_date')
