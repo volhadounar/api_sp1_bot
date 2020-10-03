@@ -19,9 +19,10 @@ INIT_TIME_STAMP = int(time.time())
 bot = telegram.Bot(token=TELEGRAM_TOKEN)
 
 
-def parse_homework_status(homework):
+def parse_homework_status(homework: dict):
     if 'homework_name' not in homework or 'status' not in homework:
-        return 'Статус домашней работы не получен. Произошел сбой.'
+        raise Exception('An Error in function parse_homework_status '
+                        f'with params homework={homework}')
     homework_name = homework.get('homework_name')
     status = homework.get('status')
     if status == 'approved':
@@ -32,7 +33,7 @@ def parse_homework_status(homework):
     return f'У вас проверили работу "{homework_name}"!\n\n{verdict}'
 
 
-def get_homework_statuses(current_timestamp):
+def get_homework_statuses(current_timestamp: int):
     current_timestamp = current_timestamp if current_timestamp > 0 \
                         else INIT_TIME_STAMP
     headers = {'Authorization': f'OAuth {PRACTICUM_TOKEN}'}
@@ -41,19 +42,13 @@ def get_homework_statuses(current_timestamp):
     try:
         homework_statuses = requests.get(
                             url, headers=headers, params=data).json()
-    except requests.exceptions.HTTPError as e:
-        logging.error(f'Http Error: {e}')
-        homework_statuses = {}
-    except requests.exceptions.ConnectionError as e:
-        logging.error(f'Error Connecting: {e}')
-        homework_statuses = {}
     except requests.exceptions.RequestException as e:
         logging.error(f'Some request\'s error: {e}')
         homework_statuses = {}
     return homework_statuses
 
 
-def send_message(message):
+def send_message(message: str):
     return bot.send_message(chat_id=CHAT_ID, text=message)
 
 
