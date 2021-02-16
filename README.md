@@ -17,8 +17,8 @@ Getting Started
     4.  ``touch .env`` -- Creates file to keep secret data.
         You have to be registed on https://telegram.org/ to run the app.
         File .env should contain: 
-            1. PRACTICUM_TOKEN=    -- Yandex practikum token
-            2. TELEGRAM_TOKEN=     -- Telegram token [ use @BotFather to create a bot in Telegram, then it sends to you the token access the Bot API]
-            3. CHAT_ID=            -- Your chat id in telegram [ask @userinfobot] or any other Telegram id that will recieves message
+        1. PRACTICUM_TOKEN=    -- Yandex practikum token
+        2. TELEGRAM_TOKEN=     -- Telegram token [ use @BotFather to create a bot in Telegram, then it sends to you the token access the Bot API]
+        3. CHAT_ID=            -- Your chat id in telegram [ask @userinfobot] or any other Telegram id that will recieves message
     5.  ``pip install -r requirements.txt``  -- Should install everything you need.
     6.  ``python3 homework`` -- Running localy
